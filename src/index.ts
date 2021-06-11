@@ -1,7 +1,12 @@
 import { config as loadEnvVars } from "dotenv";
 import { writeLog } from "fast-node-logger";
 import type { NodeMode } from "./typings/node/mode";
-import { createLoggerInstance, getCredential } from "./helpers/util";
+import { createLoggerInstance } from "./helpers/util";
+import { initialBoard } from "./helpers/board";
+import { Checker, Player } from "./typings/basic-types";
+import { initialPlayer } from "./helpers/player";
+import { initialCheckers } from "./helpers/checker";
+import { roll } from "./helpers/actions";
 
 /* place holder for execution time measuring **/
 const hrstart = process.hrtime();
@@ -19,24 +24,36 @@ if (process.env.NODE_ENV) {
 /**@description logger instance to store logs in files located in ./logs directory */
 const logger = await createLoggerInstance(nodeMode);
 
-/**@note put your code below here */
+/**@rules https://www.bkgm.com/rules.html */
 
-/**
- * @BEST_PRACTICES how to store credential out of source code
- * - use operating system credential manager
- * - use .env file located in project root directory
- */
-getCredential("test_cred").then(({ account, password }) => {
-  writeLog(`loaded credential: ${account}, ${password}`, {
-    level: "warn",
-    stdout: true,
-  });
+/**  played on a board consisting of twenty-four narrow triangles called points */
+const numberOfPoints = 24;
+/** The triangles alternate in color and are grouped into four quadrants of six triangles each. */
+const numberOfPointsInEachQuadrant = 6;
+
+const numberOfCheckersPerPlayer = 15;
+
+type Config = {
+  homeBoardLocation: "left" | "right";
+};
+
+const config: Config = {
+  homeBoardLocation: "left",
+};
+
+const player1 = initialPlayer({
+  color: "red",
+  name: "Saeid",
+});
+const player2 = initialPlayer({
+  color: "blue",
+  name: "Amir",
 });
 
-process.on("beforeExit", (code) => {
-  const hrend = process.hrtime(hrstart);
-  writeLog(`Execution time ${hrend[0]}s ${hrend[1] / 1000000}ms`, {
-    level: "info",
-    stdout: true,
-  });
+const board = initialBoard({
+  numberOfPoints,
+  players: [player2, player1],
+  numberOfCheckersPerPlayer,
 });
+
+const move01 = roll({ numberOfDice: 2, player: player1 });
