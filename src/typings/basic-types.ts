@@ -14,7 +14,6 @@ export type Player = {
 };
 
 export type Board = {
-  startPoint: Checker[];
   bar: Checker[];
   points: Array<{
     type: string;
@@ -22,3 +21,5 @@ export type Board = {
     checkers: Checker[];
   }>;
 };
+
+export type HomeBoardLocation = "left" | "right";

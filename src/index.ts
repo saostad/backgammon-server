@@ -3,7 +3,7 @@ import { writeLog } from "fast-node-logger";
 import type { NodeMode } from "./typings/node/mode";
 import { createLoggerInstance } from "./helpers/util";
 import { initialBoard } from "./helpers/board";
-import { Checker, Player } from "./typings/basic-types";
+import { Checker, HomeBoardLocation, Player } from "./typings/basic-types";
 import { initialPlayer } from "./helpers/player";
 import { initialCheckers } from "./helpers/checker";
 import { roll } from "./helpers/actions";
@@ -34,7 +34,7 @@ const numberOfPointsInEachQuadrant = 6;
 const numberOfCheckersPerPlayer = 15;
 
 type Config = {
-  homeBoardLocation: "left" | "right";
+  homeBoardLocation: HomeBoardLocation;
 };
 
 const config: Config = {
@@ -54,6 +54,7 @@ const board = initialBoard({
   numberOfPoints,
   players: [player2, player1],
   numberOfCheckersPerPlayer,
+  homeBoardLocation: config.homeBoardLocation,
 });
 
 const move01 = roll({ numberOfDice: 2, player: player1 });

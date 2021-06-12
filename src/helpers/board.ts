@@ -1,19 +1,20 @@
-import { Board, Player } from "../typings/basic-types";
+import { Board, HomeBoardLocation, Player } from "../typings/basic-types";
 import { initialCheckers } from "./checker";
 
 type InitialBoard = {
   numberOfPoints: number;
   numberOfCheckersPerPlayer: number;
   players: [Player, Player];
+  homeBoardLocation: HomeBoardLocation;
 };
 
 export function initialBoard({
   numberOfCheckersPerPlayer,
   players,
   numberOfPoints,
+  homeBoardLocation,
 }: InitialBoard): Board {
   const board: Board = {
-    startPoint: [],
     bar: [],
     points: [],
   };
@@ -25,6 +26,7 @@ export function initialBoard({
     board,
     numberOfCheckersPerPlayer,
     players,
+    homeBoardLocation,
   });
 
   return board;

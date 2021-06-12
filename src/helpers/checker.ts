@@ -1,20 +1,20 @@
-import { Board, Player } from "../typings/basic-types";
+import { Board, HomeBoardLocation, Player } from "../typings/basic-types";
 
 type InitialCheckers = {
   board: Board;
   numberOfCheckersPerPlayer: number;
   players: [Player, Player];
+  homeBoardLocation: HomeBoardLocation;
 };
 
 export function initialCheckers({
   board,
   players,
   numberOfCheckersPerPlayer,
+  homeBoardLocation,
 }: InitialCheckers): Board {
   players.forEach((player) => {
-    for (let i = 1; i <= numberOfCheckersPerPlayer; i++) {
-      board.startPoint.push({ id: i, type: "checker", owner: player });
-    }
+    // TODO: put checkers in initial locations
   });
 
   return board;
