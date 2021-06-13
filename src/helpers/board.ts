@@ -1,3 +1,4 @@
+import { randomUUID } from "crypto";
 import { Board, HomeBoardLocation, Player } from "../typings/basic-types";
 import { initialCheckers } from "./checker";
 
@@ -17,9 +18,16 @@ export function initialBoard({
   const board: Board = {
     bar: [],
     points: [],
+    bearOff: [],
   };
   for (let i = 1; i <= numberOfPoints; i++) {
-    board.points.push({ type: "point", id: i, checkers: [] });
+    board.points.push({
+      type: "point",
+      /** between 1-24 */
+      positionId: i,
+      id: randomUUID(),
+      checkers: [],
+    });
   }
 
   initialCheckers({

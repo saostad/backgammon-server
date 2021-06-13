@@ -1,11 +1,9 @@
 import { config as loadEnvVars } from "dotenv";
-import { writeLog } from "fast-node-logger";
 import type { NodeMode } from "./typings/node/mode";
 import { createLoggerInstance } from "./helpers/util";
 import { initialBoard } from "./helpers/board";
-import { Checker, HomeBoardLocation, Player } from "./typings/basic-types";
+import { HomeBoardLocation, KickoffStarter } from "./typings/basic-types";
 import { initialPlayer } from "./helpers/player";
-import { initialCheckers } from "./helpers/checker";
 import { roll } from "./helpers/actions";
 
 /* place holder for execution time measuring **/
@@ -24,7 +22,11 @@ if (process.env.NODE_ENV) {
 /**@description logger instance to store logs in files located in ./logs directory */
 const logger = await createLoggerInstance(nodeMode);
 
-/**@rules https://www.bkgm.com/rules.html */
+/**
+ * @rules
+ * - https://www.bkgm.com/rules.html
+ * - https://en.wikipedia.org/wiki/Backgammon
+ */
 
 /**  played on a board consisting of twenty-four narrow triangles called points */
 const numberOfPoints = 24;
@@ -35,10 +37,12 @@ const numberOfCheckersPerPlayer = 15;
 
 type Config = {
   homeBoardLocation: HomeBoardLocation;
+  kickoffStarter: KickoffStarter;
 };
 
 const config: Config = {
-  homeBoardLocation: "left",
+  homeBoardLocation: "right",
+  kickoffStarter: "higher",
 };
 
 const player1 = initialPlayer({
@@ -56,5 +60,7 @@ const board = initialBoard({
   numberOfCheckersPerPlayer,
   homeBoardLocation: config.homeBoardLocation,
 });
+
+board.points.forEach((el, i) => console.log(i + 1, el.checkers.length));
 
 const move01 = roll({ numberOfDice: 2, player: player1 });

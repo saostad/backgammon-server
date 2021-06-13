@@ -1,5 +1,6 @@
 export type Checker = {
-  id: number;
+  /** auto generated uuid */
+  id: string;
   type: "checker";
   owner: Player;
 };
@@ -15,11 +16,15 @@ export type Player = {
 
 export type Board = {
   bar: Checker[];
+  bearOff: Checker[];
   points: Array<{
     type: string;
-    id: number;
+    /** auto generated uuid */
+    id: string;
+    positionId: number;
     checkers: Checker[];
   }>;
 };
 
 export type HomeBoardLocation = "left" | "right";
+export type KickoffStarter = "lower" | "higher";
