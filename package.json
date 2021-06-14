@@ -1,11 +1,11 @@
 {
-  "name": "create-ts-starter",
-  "version": "4.0.3",
-  "description": "Production ready starter for typescript node project",
+  "name": "backgammon-server",
+  "version": "0.0.1",
+  "description": "backgammon server",
   "type": "module",
   "repository": {
     "type": "git",
-    "url": "https://github.com/saostad/node-typescript-starter.git"
+    "url": "https://github.com/saostad/backgammon.git"
   },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -93,6 +93,7 @@
   "dependencies": {
     "dotenv": "^10.0.0",
     "fast-node-logger": "^1.4.13",
+    "fastify": "^3.17.0",
     "keytar": "^7.7.0"
   }
 }

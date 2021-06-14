@@ -15,6 +15,8 @@ export type Player = {
 };
 
 export type Board = {
+  homeBoardLocation: HomeBoardLocation;
+  kickoffStarter: KickoffStarter;
   bar: Checker[];
   bearOff: Checker[];
   points: Array<{

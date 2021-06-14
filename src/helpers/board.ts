@@ -1,21 +1,37 @@
 import { randomUUID } from "crypto";
-import { Board, HomeBoardLocation, Player } from "../typings/basic-types";
+import {
+  Board,
+  HomeBoardLocation,
+  KickoffStarter,
+  Player,
+} from "../typings/basic-types";
 import { initialCheckers } from "./checker";
 
 type InitialBoard = {
-  numberOfPoints: number;
-  numberOfCheckersPerPlayer: number;
   players: [Player, Player];
   homeBoardLocation: HomeBoardLocation;
+  kickoffStarter: KickoffStarter;
 };
 
+/**
+ * @rules
+ * - https://www.bkgm.com/rules.html
+ * - https://en.wikipedia.org/wiki/Backgammon
+ */
+
 export function initialBoard({
-  numberOfCheckersPerPlayer,
   players,
-  numberOfPoints,
   homeBoardLocation,
+  kickoffStarter,
 }: InitialBoard): Board {
+  /**  played on a board consisting of twenty-four narrow triangles called points */
+  const numberOfPoints = 24;
+
+  const numberOfCheckersPerPlayer = 15;
+
   const board: Board = {
+    homeBoardLocation,
+    kickoffStarter,
     bar: [],
     points: [],
     bearOff: [],
