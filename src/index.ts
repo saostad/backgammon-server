@@ -50,7 +50,7 @@ const player1 = initialPlayer({
   name: "Saeid",
 });
 const player2 = initialPlayer({
-  color: "blue",
+  color: "black",
   name: "Amir",
 });
 
@@ -62,5 +62,7 @@ const board = initialBoard({
 });
 
 board.points.forEach((el, i) => console.log(i + 1, el.checkers.length));
-
 const move01 = roll({ numberOfDice: 2, player: player1 });
+console.log(`File: index.ts,`, `Line: 66 => `, move01);
+
+// TODO: create web api routes and make this a game server.
