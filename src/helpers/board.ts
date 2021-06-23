@@ -30,6 +30,7 @@ export function initialBoard({
   const numberOfCheckersPerPlayer = 15;
 
   const board: Board = {
+    id: randomUUID(),
     homeBoardLocation,
     kickoffStarter,
     bar: [],

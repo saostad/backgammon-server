@@ -15,6 +15,7 @@ export type Player = {
 };
 
 export type Board = {
+  id: string;
   homeBoardLocation: HomeBoardLocation;
   kickoffStarter: KickoffStarter;
   bar: Checker[];

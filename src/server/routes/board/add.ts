@@ -1,7 +1,7 @@
-import { FastifyInstance } from "fastify";
+import type { FastifyInstance } from "fastify";
 import { initialBoard } from "../../../helpers/board";
 import { initialPlayer } from "../../../helpers/player";
-import {
+import type {
   HomeBoardLocation,
   KickoffStarter,
   Player,
